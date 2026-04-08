@@ -4,6 +4,7 @@
 formula:
     # Conversions
     weight_kg = weight_g / 1000
+    
     density_kg_m3 = density_g_cm3 * 1000
     diameter_m = diameter_mm / 1000
     # Area
