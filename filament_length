@@ -1,0 +1,39 @@
+Filament length calc:
+import math
+import argparse
+
+def filament_length(weight_g, density_g_cm3, diameter_mm):
+    # Conversions
+    weight_kg = weight_g / 1000
+    density_kg_m3 = density_g_cm3 * 1000
+    diameter_m = diameter_mm / 1000
+
+    # Area
+    area = math.pi * (diameter_m / 2) ** 2
+
+    # Length
+    length_m = weight_kg / (density_kg_m3 * area)
+
+    return length_m
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Calculate 3D filament length")
+
+    parser.add_argument("-w", "--weight", type=float, required=True,
+                        help="Weight in grams (e.g. 1000)")
+    parser.add_argument("-d", "--density", type=float, required=True,
+                        help="Density in g/cm³ (e.g. 1.26)")
+    parser.add_argument("-m", "--diameter", type=float, required=True,
+                        help="Diameter in mm (e.g. 1.75)")
+
+    args = parser.parse_args()
+
+    length = filament_length(args.weight, args.density, args.diameter)
+
+    print(f"\nFilament length: {length:.2f} meters\n")
+
+
+if __name__ == "__main__":
+    main()
+
